@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/3/w3.css">
+  <style>
+    body {
+  text-align: center;
+  background: #00ecb9;
+  font-family: sans-serif;
+  font-weight: 100;
+}
+ 
+.countdown-title {
+  color: #396;
+  font-weight: 100;
+  font-size: 40px;
+  margin: 40px 0px 20px;
+}
+ 
+.countdown {
+  font-family: sans-serif;
+  color: #fff;
+  display: inline-block;
+  font-weight: 100;
+  text-align: center;
+  font-size: 30px;
+}
+ 
+.countdown-number {
+  padding: 10px;
+  border-radius: 3px;
+  background: #00bf96;
+  display: inline-block;
+}
+ 
+.countdown-time {
+  padding: 15px;
+  border-radius: 3px;
+  background: #00816a;
+  display: inline-block;
+}
+ 
+.countdown-text {
+  display: block;
+  padding-top: 5px;
+  font-size: 16px;
+}
+img {
+  width: 100%;
+  height: auto;
+}
+@media only screen and (min-width: 600px) {
+  .col-s-1 {width: 8.33%;}
+  .col-s-2 {width: 16.66%;}
+  .col-s-3 {width: 25%;}
+  .col-s-4 {width: 33.33%;}
+  .col-s-5 {width: 41.66%;}
+  .col-s-6 {width: 50%;}
+  .col-s-7 {width: 58.33%;}
+  .col-s-8 {width: 66.66%;}
+  .col-s-9 {width: 75%;}
+  .col-s-10 {width: 83.33%;}
+  .col-s-11 {width: 91.66%;}
+  .col-s-12 {width: 100%;}
+}
+
+@media only screen and (min-width: 768px) {
+  .col-1 {width: 8.33%;}
+  .col-2 {width: 16.66%;}
+  .col-3 {width: 25%;}
+  .col-4 {width: 33.33%;}
+  .col-5 {width: 41.66%;}
+  .col-6 {width: 50%;}
+  .col-7 {width: 58.33%;}
+  .col-8 {width: 66.66%;}
+  .col-9 {width: 75%;}
+  .col-10 {width: 83.33%;}
+  .col-11 {width: 91.66%;}
+  .col-12 {width: 100%;}
+}
+[class*="col-"] {
+  float: center;
+  padding: 15px;
+  width: 100%;
+}
+  </style>
+<body>
+<h1 class="countdown-title">До увольнения осталось</h1>
+<div id="countdown" class="countdown">
+  <div class="countdown-number">
+    <span class="days countdown-time"></span>
+    <span class="countdown-text">Дней</span>
+  </div>
+  <div class="countdown-number">
+    <span class="hours countdown-time"></span>
+    <span class="countdown-text">Часов</span>
+  </div>
+  <div class="countdown-number">
+    <span class="minutes countdown-time"></span>
+    <span class="countdown-text">Минут</span>
+  </div>
+  <div class="countdown-number">
+    <span class="seconds countdown-time"></span>
+    <span class="countdown-text">Секунд</span>
+  </div>
+</div>
+<div class="col-6 col-s-9"><img src="photo_2020-07-13_20-41-38.jpg"></div>
+<script type="text/javascript">
+function getTimeRemaining(endtime) {
+  var t = Date.parse(endtime) - Date.parse(new Date());
+  var seconds = Math.floor((t / 1000) % 60);
+  var minutes = Math.floor((t / 1000 / 60) % 60);
+  var hours = Math.floor((t / (1000 * 60 * 60)) % 24);
+  var days = Math.floor(t / (1000 * 60 * 60 * 24));
+  return {
+    'total': t,
+    'days': days,
+    'hours': hours,
+    'minutes': minutes,
+    'seconds': seconds
+  };
+}
+ 
+function initializeClock(id, endtime) {
+  var clock = document.getElementById(id);
+  var daysSpan = clock.querySelector('.days');
+  var hoursSpan = clock.querySelector('.hours');
+  var minutesSpan = clock.querySelector('.minutes');
+  var secondsSpan = clock.querySelector('.seconds');
+ 
+  function updateClock() {
+    var t = getTimeRemaining(endtime);
+ 
+    daysSpan.innerHTML = t.days;
+    hoursSpan.innerHTML = ('0' + t.hours).slice(-2);
+    minutesSpan.innerHTML = ('0' + t.minutes).slice(-2);
+    secondsSpan.innerHTML = ('0' + t.seconds).slice(-2);
+ 
+    if (t.total <= 0) {
+      clearInterval(timeinterval);
+    }
+  }
+ 
+  updateClock();
+  var timeinterval = setInterval(updateClock, 1000);
+}
+ 
+var deadline="July 31 2020 19:00:00 GMT+0300";
+initializeClock('countdown', deadline);
+</script>
+</body>
+</html>
